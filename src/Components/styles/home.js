@@ -6,6 +6,7 @@ const MainContainer = styled.main`
   background: #1488CC;
   display: grid;
   place-items: center;
+  font-family: sans-serif;
 `;
 
 const FormContainer = styled.div`
@@ -55,8 +56,6 @@ const Label = styled.label`
   color: #1488CC;
   font-weight: bold;
   width: 200px;
-  text-align: center;
-  font-family: sans-serif;
 `;
 
 const Button = styled.button`
@@ -125,13 +124,12 @@ const NavDate = styled.p`
 `;
 
 const Footer = styled.p`
-  background: #00AB66;
+  background: ${({isError}) => isError ? '#B33A3A' : '#00AB66'};
   position: absolute;
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   color: #fff;
-  font-family: sans-serif;
   padding: 10px;
   border-radius: 10px;
 `;

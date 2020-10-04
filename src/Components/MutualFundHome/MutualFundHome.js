@@ -177,7 +177,7 @@ const MutualFundHome = () => {
       ) : (
         <NavResults navRows={navRows} goBack={handleBackButton} />
       )}
-      {footerText ? <Footer>{footerText}</Footer> : null}
+      {footerText ? <Footer isError={step === 1}>{footerText}</Footer> : null}
     </MainContainer>
   );
 };
