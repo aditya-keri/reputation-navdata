@@ -8,6 +8,7 @@ import {
   Button,
   Footer,
   BackButton,
+  ExampleText,
 } from "../styles/home";
 
 import backButton from "../../assets/back-button.svg";
@@ -70,7 +71,7 @@ const MutualFundHome = () => {
     const navDataRows = getNavRows(data);
     setNavRows(navDataRows);
     setShowNavResults(true);
-    setFooterText('');
+    setFooterText("");
   };
 
   const handleBackButton = () => {
@@ -95,7 +96,7 @@ const MutualFundHome = () => {
               src={backButton}
               onClick={() => {
                 setStep(1);
-                setFooterText('');
+                setFooterText("");
               }}
             />
           )}
@@ -116,6 +117,7 @@ const MutualFundHome = () => {
                   value={schemeDetails.schemeNumber}
                 />
               </InputContainer>
+              <ExampleText>Example : 102885</ExampleText>
               <Button
                 onClick={() => {
                   downloadNavDetails();
@@ -137,7 +139,9 @@ const MutualFundHome = () => {
                   name="investmentPeriod"
                   type="text"
                   maxLength="2"
-                  onFocus={()=> {setFooterText('')}}
+                  onFocus={() => {
+                    setFooterText("");
+                  }}
                   onChange={({ target: { value: investmentPeriod } }) => {
                     setSchemeDetails((prevState) => ({
                       ...prevState,
@@ -158,7 +162,9 @@ const MutualFundHome = () => {
                   name="horizon"
                   type="text"
                   maxLength="2"
-                  onFocus={()=> {setFooterText('')}}
+                  onFocus={() => {
+                    setFooterText("");
+                  }}
                   onChange={({ target: { value: horizon } }) => {
                     setSchemeDetails((prevState) => ({
                       ...prevState,
@@ -170,7 +176,14 @@ const MutualFundHome = () => {
                 />
               </InputContainer>
 
-              <Button onClick={handleShowReturns} disabled={!(schemeDetails.investmentPeriod && schemeDetails.horizon)}>Show returns</Button>
+              <Button
+                onClick={handleShowReturns}
+                disabled={
+                  !(schemeDetails.investmentPeriod && schemeDetails.horizon)
+                }
+              >
+                Show returns
+              </Button>
             </>
           )}
         </FormContainer>
