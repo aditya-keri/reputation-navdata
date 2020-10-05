@@ -17,52 +17,19 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### Packages used
+`moment` - For managing dates <br />
+`styled components` - For creating re-usable style elements <br />
+`ky` - A better alternative to `axios`. Honestly, there was no need of using this, I could have just used fetch. But have been looking forward to use this package for a long time, so decided to just give this a shot.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Tests
+Currently I've written one test for the main function that returns the mutual fund results based on the data, horizon and investment period. I've included a `testData.js` file that has the API response and the corresponding. <br />
+Other ways to add tests : <br />
+1. We can add component level snapshot tests. In the MutualFundHome component, we can separate out the JSX each InputContainer, turn it into a component, and see if it's being rendered based on the current step value.<br />
+2. Add more tests to the function that returns nav results. Check the type of parameters it receives, and check that they should be integers.
+3. Add proptypes to the components.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### About the API response
+It's important to note that the API only has records for working days in India. Which means, if the date is either a holiday listed [here](https://economictimes.indiatimes.com/markets/stocks/stock-market-holiday-calendar) or is a weekend, we don't get that record in the API.
+It's easy to only consider the weekdays, but since this API doesn't have records for Holidays, it becomes difficult to write the most efficient code to calculate the nav results.
+If I somehow had the list of holidays for every year, I would have written the code such that, I will ignore the weekends + holidays and then calculate the nav value, without having to loop through the list.
